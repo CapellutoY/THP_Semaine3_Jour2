@@ -5,7 +5,7 @@ class Game
     @name1 = name1
     @name2 = name2
   end
-  def self.winning_condition(boardcase)
+  def self.winning_condition(boardcase) #verifie si une condition gagnante a ete remplie#
   n=0
     if boardcase[0] == "X" && boardcase[1] == "X" && boardcase[2] == "X"
       puts "Joueur 1 vous avez gagné"
@@ -66,38 +66,37 @@ attr_accessor :boardcase
  def initialize
   boardcase = ["1","2","3","4","5","6","7","8","9"]
   n=0
-  while n < 5
+  while n < 5 #Gestion des tours
       puts "#{boardcase[0]} | #{boardcase[1]} | #{boardcase[2]}"
       puts "========="
       puts "#{boardcase[3]} | #{boardcase[4]} | #{boardcase[5]}"
       puts "========="
       puts "#{boardcase[6]} | #{boardcase[7]} | #{boardcase[8]}"
-      puts "================= tour#{n+=1} ================="
+      puts "================= tour#{n+=1} =================" #Gestion affichage
       puts "#{@name} choisi une case de 1 à 9 pour jouer :"
-      valeur1 = gets.chomp.to_i
+      valeur1 = gets.chomp.to_i #recupere les choix de cases du joueur 1
       valeur1 -= 1
       valeur1
       boardcase[valeur1] = "X"
       puts "#{@name} choisi une case de 1 à 9 pour jouer :"
-      puts "#{boardcase[0]} | #{boardcase[1]} | #{boardcase[2]}"
+      puts "#{boardcase[0]} | #{boardcase[1]} | #{boardcase[2]}"#Gestion affichage
       puts "========="
       puts "#{boardcase[3]} | #{boardcase[4]} | #{boardcase[5]}"
       puts "========="
       puts "#{boardcase[6]} | #{boardcase[7]} | #{boardcase[8]}"
-      valeur2 = gets.chomp.to_i
+      valeur2 = gets.chomp.to_i #recupere les choix de cases du joueur 2
       valeur2 -= 1
       valeur2
       boardcase[valeur2] = "O"
-      if Game.winning_condition(boardcase) == "win"
-      break
-    end
-
+      if Game.winning_condition(boardcase) == "win" #appelle la verification gagnante et arrete le jeu si remplie
+        break
+      end
     end
   end
 end
 
 class Player < Game
-  attr_accessor :name
+  attr_accessor :name #Enregistre player name
   def initialize(name)
     @name = name
   end
